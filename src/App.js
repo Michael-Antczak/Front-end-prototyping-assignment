@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import SelectPub from './components/SelectPub';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      bars: [],
+      products: [],
+      current_prices: [],
+      rounds: [], 
+      ordered_beverages: [],
+      isPubSelected: false,
+      pubSelected: '',
+      isOrderSelected: false,
+
+    }
+  }
+
+  componentDidMount() {
+    console.log('About to mount');
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+
+    if(!isPubSelected) {
+      return <SelectPub />;
+    } else if(!isOrderSelected) {
+      return <ViewDrinks />
+    } else if(isOrderSelected) {
+      return <Order />
+    }
   }
 }
 
